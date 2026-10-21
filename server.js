@@ -12,12 +12,16 @@ mkdirSync(path.dirname(dbPath), {recursive: true});
 const db = new DatabaseSync(dbPath);
 db.exec('PRAGMA journal_mode=WAL; CREATE TABLE IF NOT EXISTS use_cases(id TEXT PRIMARY KEY, category TEXT NOT NULL, payload TEXT NOT NULL);');
 
-// Seed once from seed.json; an existing database is never overwritten.
+// Seed once; an existing database is never overwritten. The real export (data/seed.json,
+// git-ignored) wins over the fictional sample that ships with the repo.
 if (db.prepare('SELECT count(*) AS n FROM use_cases').get().n === 0) {
+  const seedPath = process.env.SEED_PATH || ['data/seed.json', 'data/seed.sample.json'].map(f => path.join(root, f)).find(existsSync);
+  if (!seedPath) throw new Error('No seed file: add data/seed.json (or data/seed.sample.json)');
+  console.log(`Seeding database from ${path.relative(root, seedPath)}`);
   const insert = db.prepare('INSERT INTO use_cases VALUES(?,?,?)');
   db.exec('BEGIN');
   try {
-    for (const r of JSON.parse(readFileSync(path.join(root, 'data/seed.json'), 'utf8'))) {
+    for (const r of JSON.parse(readFileSync(seedPath, 'utf8'))) {
       insert.run(r['Submission ID'], r['Primary category'], JSON.stringify(r));
     }
     db.exec('COMMIT');

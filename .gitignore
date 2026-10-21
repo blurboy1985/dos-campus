@@ -1,3 +1,5 @@
 node_modules/
 data/*.sqlite*
 .env
+# Real submissions stay local; the repo ships data/seed.sample.json
+data/seed.json

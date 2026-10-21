@@ -11,7 +11,8 @@ const dir = mkdtempSync(path.join(tmpdir(), 'campus-test-'));
 let child;
 
 before(async () => {
-  child = spawn(process.execPath, ['server.js'], {env: {...process.env, PORT: '3098', DB_PATH: path.join(dir, 'test.sqlite')}, stdio: 'pipe'});
+  // Always test against the fictional sample, whatever real data is installed locally.
+  child = spawn(process.execPath, ['server.js'], {env: {...process.env, PORT: '3098', DB_PATH: path.join(dir, 'test.sqlite'), SEED_PATH: path.resolve('data/seed.sample.json')}, stdio: 'pipe'});
   for (let i = 0; i < 50; i++) {
     try {
       if ((await fetch(base + '/api/health')).ok) return;
