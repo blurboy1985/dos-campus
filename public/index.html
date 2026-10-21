@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DOS AI Campus 2D</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <div>
+    <h1>DOS AI Campus <span>2D</span></h1>
+    <p>Seven levels • One department per floor • Original use-case submissions • Fictional characters</p>
+  </div>
+  <div id="stats">Loading database&hellip;</div>
+</header>
+<main>
+  <aside>
+    <input id="search" placeholder="Search ideas, tools or submitters" aria-label="Search">
+    <select id="tags" aria-label="Activity filter"><option value="">All AI activities</option></select>
+    <h2>Levels</h2>
+    <div id="departments"></div>
+    <h2>Conversations</h2>
+    <div id="chats"></div>
+    <h2 id="count">Use cases</h2>
+    <div id="directory"></div>
+  </aside>
+  <section id="world">
+    <div class="toolbar">
+      <button id="home">Building view</button>
+      <button id="fit">Fit floor</button>
+      <button id="zoomin">Zoom +</button>
+      <button id="zoomout">Zoom &minus;</button>
+      <button id="follow">Follow selected</button>
+      <button id="pause">Pause staff</button>
+      <button id="network" aria-pressed="false">Show network</button>
+    </div>
+    <div id="levels" class="levels" aria-label="Level selector"></div>
+    <div id="tooltip"></div>
+    <div id="help">Click a level to step inside</div>
+    <div id="loading">Opening the building&hellip;</div>
+  </section>
+</main>
+<dialog id="details">
+  <div class="dialoghead">
+    <button id="close">Close &times;</button>
+    <small id="caseid"></small>
+    <h2 id="title"></h2>
+    <div id="meta"></div>
+  </div>
+  <div id="body"></div>
+</dialog>
+<script type="module" src="/app.js"></script>
+</body>
+</html>

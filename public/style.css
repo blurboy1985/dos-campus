@@ -1,0 +1,66 @@
+*{box-sizing:border-box}
+body{margin:0;background:#101c2d;color:#e9f1fa;font:14px system-ui,sans-serif}
+header{height:82px;display:flex;justify-content:space-between;align-items:center;padding:15px 24px;border-bottom:1px solid #3a4f69}
+h1{margin:0;font-size:24px;color:#ffdb92}
+h1 span{font-size:12px;background:#314965;padding:5px;border-radius:5px;vertical-align:middle}
+header p{font-size:12px;color:#9eb5ce;margin:5px 0}
+#stats{font-size:12px;color:#9eb5ce;white-space:nowrap}
+main{display:grid;grid-template-columns:300px 1fr;height:calc(100vh - 82px)}
+aside{padding:16px;overflow:auto;background:#1b2d44}
+input,select{width:100%;padding:11px;background:#112137;color:#fff;border:1px solid #4e6783;border-radius:7px;margin-bottom:9px;font:inherit}
+h2{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#abc0d7}
+button{cursor:pointer;font:inherit}
+:focus-visible{outline:3px solid #ffd27a;outline-offset:2px}
+
+.department{width:100%;text-align:left;color:#eaf1fa;background:#293f58;border:1px solid #47617c;border-left:5px solid var(--color);border-radius:7px;padding:10px 11px;margin:5px 0}
+.department:hover{background:#334b66}
+.department.active{background:#465a70;border-top-color:#ffda90}
+.department b{float:right;font-weight:600;color:#c9d8e8}
+.entry{width:100%;text-align:left;background:none;border:0;border-bottom:1px solid #354e69;color:#dbe8f5;padding:12px 3px}
+.entry:hover{color:#ffda90}
+.entry small{display:block;color:#92abc5;font-size:11px;margin-top:5px}
+
+#chats{font-size:12px}
+#chats:empty::before{content:'No conversations right now';color:#7f98b3}
+.chat{display:block;width:100%;text-align:left;background:#152a42;border:1px solid #39536f;border-radius:7px;color:#dbe8f5;padding:8px 9px;margin:5px 0}
+.chat:hover{border-color:#ffd27a}
+.chat small{display:block;color:#92abc5;margin-top:3px}
+
+#world{position:relative;overflow:hidden;background:#16263a}
+#world canvas{display:block;touch-action:none;cursor:grab}
+.toolbar{position:absolute;top:15px;left:15px;right:90px;display:flex;flex-wrap:wrap;gap:6px;z-index:2}
+.toolbar button,#close{padding:9px 12px;border:1px solid #617b96;background:#162a40e8;color:#fff;border-radius:6px}
+.toolbar button:hover{border-color:#ffd27a}
+.toolbar button[aria-pressed="true"]{background:#5b4a1f;border-color:#ffd27a}
+.levels{position:absolute;top:15px;right:15px;display:flex;flex-direction:column;gap:5px;z-index:2}
+.level{width:54px;padding:8px 0;border:1px solid #617b96;border-left:5px solid var(--color);background:#162a40e8;color:#fff;border-radius:6px;font-weight:700}
+.level.active{background:#465a70;border-color:#ffd27a;border-left-color:var(--color)}
+#help{position:absolute;bottom:16px;left:16px;background:#112338e8;color:#b7cce1;border:1px solid #4d6986;padding:10px 12px;border-radius:8px;font-size:11px;pointer-events:none;max-width:calc(100% - 110px)}
+#tooltip{display:none;position:absolute;background:#15293ff0;border:1px solid #ffd38a;border-radius:6px;padding:8px 10px;max-width:280px;pointer-events:none;font-size:12px;z-index:3}
+#loading{position:absolute;inset:0;display:grid;place-items:center;background:#14253e;z-index:4}
+
+dialog{padding:0;border:2px solid #d7b67c;border-radius:12px;background:#1a2d46;color:#eaf1fa;width:min(850px,94vw);max-height:90vh}
+dialog::backdrop{background:#071221b8}
+.dialoghead{padding:22px;background:#2a415d;position:sticky;top:0;z-index:1}
+.dialoghead h2{font-size:23px;text-transform:none;letter-spacing:0;color:#ffda90;margin:9px 55px 9px 0}
+#caseid,#meta{color:#b7cce1}
+#close{float:right}
+#body{padding:24px}
+.field{margin-bottom:22px}
+.field h3{font-size:12px;text-transform:uppercase;color:#a1bfdd;margin:0 0 8px}
+.field p{white-space:pre-wrap;line-height:1.65;overflow-wrap:anywhere;margin:0}
+.pill{display:inline-block;font-size:11px;background:#344e6c;padding:5px 8px;border-radius:5px;margin:0 5px 8px 0}
+.related{display:block;width:100%;text-align:left;background:#22385300;border:1px solid #3d5774;border-left:4px solid var(--color);border-radius:6px;color:#e3edf7;padding:8px 10px;margin:6px 0}
+.related:hover{border-color:#ffd27a}
+.related small{display:block;color:#9fb6cd;margin-top:3px}
+
+@media(max-width:760px){
+  header{height:auto;min-height:70px;padding:10px 16px}
+  main{grid-template-columns:1fr;grid-template-rows:auto 1fr;height:auto}
+  aside{max-height:38vh;padding:10px 16px}
+  #world{height:70vh}
+  #stats{display:none}
+  h1{font-size:18px}
+  .toolbar button{font-size:11px;padding:7px}
+  .level{width:44px;padding:6px 0}
+}
